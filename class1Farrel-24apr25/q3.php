@@ -17,10 +17,8 @@ function findMaxMin(...$numbers) {
         }
     }
 
-    echo "<div style='border: 2px solid black; width: fit-content; padding: 10px; font-family: Arial; margin: 10px 0;'>";
-    echo "Max is $max<br>";
-    echo "Min is $min";
-    echo "</div>";
+    echo "Max: $max<br>";
+    echo "Min: $min<br><br>";
 }
 
 findMaxMin(9, 4, 2, 1, 5, 6, 3, 8, 7);       
