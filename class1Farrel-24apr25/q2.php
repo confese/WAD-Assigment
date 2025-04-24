@@ -10,56 +10,29 @@ $data = [
     "Lyana;Female;CIT",
 ];
 
-$maleCount = 0;
-$femaleCount = 0;
-$citCount = 0;
-$cisCount = 0;
+$male = $female = $CIT = $CIS = 0;
 $maleNames = [];
 $femaleNames = [];
 
 foreach ($data as $entry) {
-    list($name, $gender, $program) = explode(';', $entry);
-
-    if (strtolower($gender) === 'male') {
-        $maleCount++;
+    list($name, $gender, $program) = explode(";", $entry);
+    
+    if ($gender === "Male") {
+        $male++;
         $maleNames[] = $name;
-    } elseif (strtolower($gender) === 'female') {
-        $femaleCount++;
+    } else {
+        $female++;
         $femaleNames[] = $name;
     }
 
-    if (strtolower($program) === 'cit') {
-        $citCount++;
-    } elseif (strtolower($program) === 'cis') {
-        $cisCount++;
-    }
+    if ($program === "CIT") $CIT++;
+    else $CIS++;
 }
-?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Student Stats</title>
-    <style>
-        .output-box {
-            border: 2px solid black;
-            padding: 15px;
-            width: fit-content;
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-        }
-    </style>
-</head>
-<body>
-    <div class="output-box">
-        <?php
-        echo "Male: $maleCount<br>";
-        echo "Female: $femaleCount<br>";
-        echo "CIT: $citCount<br>";
-        echo "CIS: $cisCount<br>";
-        echo "Male students: " . implode(', ', $maleNames) . "<br>";
-        echo "Female students: " . implode(', ', $femaleNames) . "<br>";
-        ?>
-    </div>
-</body>
-</html>
+echo "Male: $male<br>";
+echo "Female: $female<br>";
+echo "CIT: $CIT<br>";
+echo "CIS: $CIS<br>";
+echo "Male students: " . implode(", ", $maleNames) . "<br>";
+echo "Female students: " . implode(", ", $femaleNames);
+?>
