@@ -18,59 +18,28 @@ function getGrade($score) {
 
 $totalScore = 0;
 $count = count($data);
+
+echo "<table border='1'>
+<tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Score</th>
+    <th>Grade</th>
+</tr>";
+
+foreach ($data as $student) {
+    $grade = getGrade($student["score"]);
+    echo "<tr>
+            <td>{$student['id']}</td>
+            <td>{$student['name']}</td>
+            <td>{$student['score']}</td>
+            <td>{$grade}</td>
+          </tr>";
+    $totalScore += $student["score"];
+}
+
+$average = $totalScore / $count;
+
+echo "</table>";
+echo "Average: " . number_format($average, 2);
 ?>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Student Scores</title>
-    <style>
-        .output-box {
-            border: 2px solid black;
-            padding: 15px;
-            width: fit-content;
-            font-family: Arial, sans-serif;
-        }
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        table, th, td {
-            border: 1px solid black;
-            padding: 6px 10px;
-            text-align: center;
-        }
-        .average {
-            margin-top: 10px;
-            font-weight: bold;
-        }
-    </style>
-</head>
-<body>
-    <div class="output-box">
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Score</th>
-                <th>Grade</th>
-            </tr>
-            <?php
-            foreach ($data as $student) {
-                $grade = getGrade($student["score"]);
-                echo "<tr>
-                        <td>{$student['id']}</td>
-                        <td>{$student['name']}</td>
-                        <td>{$student['score']}</td>
-                        <td>{$grade}</td>
-                      </tr>";
-                $totalScore += $student["score"];
-            }
-
-            $average = $totalScore / $count;
-            ?>
-        </table>
-        <div class="average">Average: <?php echo number_format($average, 2); ?></div>
-    </div>
-</body>
-</html>
